@@ -1,21 +1,14 @@
 // function App() {
 import { Navbar } from "./components/Navbar";
+import { Home } from "./pages/home";
 
-function App () {
-
+function App() {
   return (
-   <>
-   <Navbar />
-   <div className="container">
-<h1>Catálogo</h1>
-   </div>
-   </>
-  
-  )
+    <>
+      <Navbar />
+     <Home />
+    </>
+  );
 }
 
 export default App;
-
-
-
-
