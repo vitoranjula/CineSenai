@@ -2,7 +2,7 @@ import "./Home.css";
 import { FilmeCard } from "../components/FilmeCard";
 
 
-const GENERO_LABEL = {
+const GENERO_LABELS = {
      COMEDIA: 'Comédia',
   DRAMA: 'Drama',
   TERROR: 'Terror',
@@ -65,7 +65,7 @@ export const Home = () => {
         <h2 className="catalog-title">Nosso Catálogo</h2>
       </div>
 
-      <div className="movie-grid">
+      {/* <div className="movie-grid">
         {filmes.map((filme) => (
           <FilmeCard
             key={filme.id}
@@ -76,7 +76,46 @@ export const Home = () => {
             descricao={filme.descricao}
           />
         ))}
-      </div>
+      </div> */}
+<p>{filmes.length} {filmes.length === 1 ? "filme" : "filmes"} Em cartaz</p>
+{filmes.length > 0 ? (  
+  <div className="movie-grid">
+    {filmes.map((filme) => (
+      <FilmeCard
+        key={filme.id}
+        titulo={filme.titulo}
+        genero={GENERO_LABELS[filme.genero] || filme.genero}
+        duracaoMinutos={filme.duracaoMinutos}
+        urlPoster={filme.urlPoster}
+        descricao={filme.descricao}
+      />
+    ))}
+  </div>
+  ) : (
+    <div className="glass home-empty">
+<svg className="home-empty-icon" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round"
+        d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+    </svg>
+    <h3 className="home-empty-title">Nenhum filme encontrado</h3>
+    <p className="home-empty-text">Tente alterar os termos da busca ou selecionar outro gênero.</p>
     </div>
+  )}
+  </div>
   );
 };
+
+
+
+// ### Lista de gêneros
+
+// **Objetivo:** praticar `map` e `key` sozinho e entender por que a `key` precisa ser única.
+
+// **Onde:** fora do projeto. Pode ser um arquivo de teste, como `src/Teste.jsx`, que você apaga depois.
+
+// **O que fazer:**
+
+// 1. Crie um array de strings com três ou quatro gêneros, por exemplo `['Ação', 'Drama', 'Comédia']`.
+// 2. Mostre os gêneros em uma lista `<ul>`, usando `map` para gerar um `<li>` para cada gênero.
+// 3. Use a própria string como `key` de cada `<li>`.
+// 4. Agora repita um gênero no array (dois "Drama") e abra o console (F12).
